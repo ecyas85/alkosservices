@@ -1,7 +1,7 @@
 package com.alkoscode.customer.service;
 
 import com.alkoscode.customer.CustomerRegistrationRequest;
-import com.alkoscode.customer.CustomerRepository;
+import com.alkoscode.customer.repository.CustomerRepository;
 import com.alkoscode.customer.model.Customer;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.alkoscode.customer;
+package com.alkoscode.customer.repository;
 
 import com.alkoscode.customer.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
