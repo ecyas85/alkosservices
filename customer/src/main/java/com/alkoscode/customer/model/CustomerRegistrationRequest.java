@@ -1,4 +1,4 @@
-package com.alkoscode.customer;
+package com.alkoscode.customer.model;
 
 public record CustomerRegistrationRequest(
         String firstName,

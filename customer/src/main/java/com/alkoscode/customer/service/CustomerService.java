@@ -1,7 +1,7 @@
 package com.alkoscode.customer.service;
 
-import com.alkoscode.customer.CustomerRegistrationRequest;
-import com.alkoscode.customer.FraudCheckResponse;
+import com.alkoscode.customer.model.CustomerRegistrationRequest;
+import com.alkoscode.customer.model.FraudCheckResponse;
 import com.alkoscode.customer.model.Customer;
 import com.alkoscode.customer.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public record CustomerService(CustomerRepository customerRepository,
         //todo: check if email not taken
         //todo: check if fraudster
         FraudCheckResponse fraudCheckResponse = restTemplate.getForObject(
-                "http://localhost:8081/api/v1/fraud-check/{customerId}",
+                "http://FRAUD/api/v1/fraud-check/{customerId}",
                 FraudCheckResponse.class,
                 customer.getId()
         );

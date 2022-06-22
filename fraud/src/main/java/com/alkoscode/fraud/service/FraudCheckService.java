@@ -10,13 +10,12 @@ import java.time.LocalDateTime;
 public record FraudCheckService(FraudCheckHistoryRepository fraudCheckHistoryRepository) {
 
     public boolean isFraudulentCustomer(final Long customerId) {
-        fraudCheckHistoryRepository.save(
-                FraudCheckHistory.builder()
-                        .customerId(customerId)
-                        .isFraudster(false)
-                        .createdAt(LocalDateTime.now())
-                        .build()
-        );
+        FraudCheckHistory fraudCheckHistory = FraudCheckHistory.builder()
+                .customerId(customerId)
+                .isFraudster(false)
+                .createdAt(LocalDateTime.now())
+                .build();
+        fraudCheckHistoryRepository.save(fraudCheckHistory);
         return false;
     }
 }

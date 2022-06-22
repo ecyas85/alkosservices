@@ -18,18 +18,18 @@ import javax.persistence.UniqueConstraint;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(
-        name = "customer",
-        uniqueConstraints = {
-                @UniqueConstraint(name = "customer_email_unique",
-                        columnNames = "email")
-        })
+//@Table(
+//        name = "customer",
+//        uniqueConstraints = {
+//                @UniqueConstraint(name = "customer_email_unique",
+//                        columnNames = "email")
+//        })
 @Entity(name = "Customer")
 public class Customer {
     @Id
     @SequenceGenerator(name = "customer_id_sequence",
             sequenceName = "customer_id_sequence"
-            )
+    )
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
             generator = "customer_id_sequence")
     private Long id;
@@ -46,7 +46,8 @@ public class Customer {
 
     @Column(name = "email",
             nullable = false,
-            columnDefinition = "TEXT")
+            columnDefinition = "TEXT",
+            unique = true)
     private String email;
 }
 

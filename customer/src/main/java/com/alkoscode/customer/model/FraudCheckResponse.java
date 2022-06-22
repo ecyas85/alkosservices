@@ -1,4 +1,4 @@
-package com.alkoscode.fraud;
+package com.alkoscode.customer.model;
 
 public record FraudCheckResponse(Boolean isFraudster) {
 }

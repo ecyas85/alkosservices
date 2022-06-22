@@ -1,6 +1,6 @@
 package com.alkoscode.customer.controller;
 
-import com.alkoscode.customer.CustomerRegistrationRequest;
+import com.alkoscode.customer.model.CustomerRegistrationRequest;
 import com.alkoscode.customer.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
