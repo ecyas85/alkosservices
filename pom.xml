@@ -13,6 +13,8 @@
         <module>customer</module>
         <module>fraud</module>
         <module>eureka-server</module>
+        <module>client</module>
+        <module>notification</module>
     </modules>
 
     <name>alkosservices</name>
@@ -55,6 +57,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
     </dependencies>
 

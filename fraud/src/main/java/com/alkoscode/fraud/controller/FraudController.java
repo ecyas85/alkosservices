@@ -1,6 +1,6 @@
 package com.alkoscode.fraud.controller;
 
-import com.alkoscode.fraud.model.FraudCheckResponse;
+import com.alkoscode.clients.fraud.model.FraudCheckResponse;
 import com.alkoscode.fraud.service.FraudCheckService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
