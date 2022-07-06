@@ -1,8 +1,8 @@
 package com.alkoscode.customer.service;
 
+import com.alkoscode.amqp.publisher.RabbitMQMessageProducer;
 import com.alkoscode.clients.fraud.FraudClient;
 import com.alkoscode.clients.fraud.model.FraudCheckResponse;
-import com.alkoscode.clients.notification.NotificationClient;
 import com.alkoscode.clients.notification.model.NotificationRequest;
 import com.alkoscode.customer.model.Customer;
 import com.alkoscode.customer.model.CustomerRegistrationRequest;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public record CustomerService(CustomerRepository customerRepository,
                               FraudClient fraudClient,
-                              NotificationClient notificationClient) {
+                              RabbitMQMessageProducer rabbitMQMessageProducer) {
     public void registerCustomer(final CustomerRegistrationRequest request) {
 
         Customer customer = Customer.builder()
@@ -30,10 +30,14 @@ public record CustomerService(CustomerRepository customerRepository,
         if (Boolean.TRUE.equals(fraudCheckResponse.isFraudster())) {
             throw new IllegalStateException("Fraudster");
         }
-        //todo: make it async. i.e add to que
-        notificationClient.sendNotification(new NotificationRequest(
+
+        NotificationRequest notificationRequest = new NotificationRequest(
                 customer.getId(),
                 customer.getEmail(),
-                String.format("Hi %s, welcome to Alkoscode...", customer.getFirstName())));
+                String.format("Hi %s, welcome to Alkoscode...", customer.getFirstName()));
+
+        rabbitMQMessageProducer.publish("internal.exchange",
+                "internal.notification.routing-key",
+                notificationRequest);
     }
 }
